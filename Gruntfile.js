@@ -53,24 +53,10 @@ module.exports = function(grunt) {
 				dest: './builder/list_item_hunter.js'
 			}
 		},
-		copy: {
-			main: {
-				files: [
-				{ expand: true, cwd: './source/js/', src: '*', dest: './public/js/'},
-				{ expand: true, cwd: './source/css/', src: '*.css', dest: './public/css/' },
-				{ expand: true, cwd: './source/images/', src: ['*.png', '*.jpg', '*.gif', '*.jpeg'], dest: './public/images/' },
-				{ expand: true, cwd: './source/images/sample/', src: ['*.png', '*.jpg', '*.gif', '*.jpeg'], dest: './public/images/sample/'},
-				{ expand: true, cwd: './source/fonts/', src: '*', dest: './public/fonts/'},
-				{ expand: true, cwd: './source/_data/', src: 'annotations.js', dest: './public/data/' }
-				]
-			},
-			css: {
-				files: [
-				{ expand: true, cwd: './source/css/', src: '*.css', dest: './public/css/' }
-				]
-			}
-		},
     symlink: {
+      options:{
+        overwrite: true
+      },
       main: {
         files: [
         { expand: true, cwd: './source/js/', src: '*', dest: './public/js/'},
@@ -151,7 +137,7 @@ module.exports = function(grunt) {
 	grunt.task.loadTasks('./builder/');
 
 	//if you choose to use scss, or any preprocessor, you can add it here
-	grunt.registerTask('default', ['patternlab', /*'sass',*/ 'copy:main']);
+	grunt.registerTask('default', ['patternlab', /*'sass',*/ 'symlink:main']);
 
 	//travis CI task
 	grunt.registerTask('travis', ['nodeunit', 'patternlab']);

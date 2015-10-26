@@ -55,8 +55,8 @@ module.exports = function(grunt) {
 		},
     symlink: {
       options:{
-        overwrite: true
-      },
+        overwrite: true,
+      }
       main: {
         files: [
         { expand: true, cwd: './source/js/', src: '*', dest: './public/js/'},
@@ -144,7 +144,7 @@ module.exports = function(grunt) {
 
 	//TODO: this line is more efficient, but you cannot run concurrent watch tasks without another dependency.
 	//grunt.registerTask('serve', ['patternlab', /*'sass',*/ 'copy:main', 'browserSync', 'watch:patterns', 'watch:scss']);
-	grunt.registerTask('serve', ['patternlab', /*'sass',*/ 'copy:main', 'browserSync', 'watch:all']);
+	grunt.registerTask('serve', ['patternlab', /*'sass',*/ 'symlink:main', 'browserSync', 'watch:all']);
 
 	grunt.registerTask('build', ['nodeunit', 'concat']);
 
